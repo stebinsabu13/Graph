@@ -4,6 +4,8 @@ import "fmt"
 
 var graph = make(map[int][]int)
 
+//adding a vertex
+
 func addVertex(key int) {
 	if contains(key) {
 		fmt.Println("Vertex already exsists")
@@ -11,6 +13,9 @@ func addVertex(key int) {
 	}
 	graph[key] = []int{}
 }
+
+//adding an edge
+
 func addEdge(from, to int) {
 	if !contains(from) || !contains(to) {
 		fmt.Println("Vertex doesn't exsists to add edge")
@@ -20,6 +25,9 @@ func addEdge(from, to int) {
 		graph[from] = append(graph[from], to)
 	}
 }
+
+//checking if the edge exsists
+
 func exsistedge(from, to int) bool {
 	for _, v := range graph[from] {
 		if v == to {
@@ -28,6 +36,9 @@ func exsistedge(from, to int) bool {
 	}
 	return false
 }
+
+//checking if the vertex exsists
+
 func contains(key int) bool {
 	for v := range graph {
 		if v == key {
@@ -36,6 +47,9 @@ func contains(key int) bool {
 	}
 	return false
 }
+
+//traversing with dfs
+
 func depthSearch(key int, visited *[]int) {
 	*visited = append(*visited, key)
 	for _, v := range graph[key] {
@@ -44,6 +58,9 @@ func depthSearch(key int, visited *[]int) {
 		}
 	}
 }
+
+//checking for if the vertex is already visited or not
+
 func check(key int, visited []int) bool {
 	for _, v := range visited {
 		if v == key {
